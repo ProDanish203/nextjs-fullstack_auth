@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Raleway } from "next/font/google";
 import "./globals.css";
+import { Toaster } from "sonner";
+import Link from "next/link";
 
-const inter = Inter({ subsets: ["latin"] });
+const raleway = Raleway({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,7 +18,27 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <head>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossOrigin="anonymous" referrerPolicy="no-referrer" />        
+      </head>
+      <body className={raleway.className}>
+        <Toaster position="top-right" richColors/>
+
+        <header className="flex items-center justify-between py-7 px-5 max-w-[1400px] w-full mx-auto">
+          <Link href="/" className="text-3xl font-semibold">
+            Auth
+          </Link>
+          <nav className="flex items-center gap-5">
+            <Link href="/login" className="text-lg font-medium">Login</Link>
+            <Link href="/signup" className="text-lg font-medium">Signup</Link>
+          </nav>
+        </header>  
+
+        <main className="min-h-[80vh] py-10 max-w-[1400px] w-full mx-auto">
+          {children}
+        </main>
+        
+      </body>
     </html>
   );
 }
