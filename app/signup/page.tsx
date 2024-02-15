@@ -35,6 +35,7 @@ const SignupPage = () => {
 
       if(!data.success) return toast.error("Something went wrong");
       toast.success("Signup success");
+      toast.info("A verification email has been sent to you. Please verify your account")
       router.push("/login");
     }catch(error:any){
       toast.error(error.response.data.error)

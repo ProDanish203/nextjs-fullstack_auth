@@ -31,7 +31,7 @@ export const POST = async (req:NextRequest) => {
         const response = NextResponse.json({
             message: "Login success",
             success: true,
-            user
+            data: user
         });
 
         response.cookies.set("token", token, {

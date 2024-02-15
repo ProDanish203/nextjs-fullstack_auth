@@ -3,6 +3,7 @@ import { Inter, Raleway } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "sonner";
 import Link from "next/link";
+import { Header } from "@/components/shared/Header";
 
 const raleway = Raleway({ subsets: ["latin"] });
 
@@ -24,15 +25,7 @@ export default function RootLayout({
       <body className={raleway.className}>
         <Toaster position="top-right" richColors/>
 
-        <header className="flex items-center justify-between py-7 px-5 max-w-[1400px] w-full mx-auto">
-          <Link href="/" className="text-3xl font-semibold">
-            Auth
-          </Link>
-          <nav className="flex items-center gap-5">
-            <Link href="/login" className="text-lg font-medium">Login</Link>
-            <Link href="/signup" className="text-lg font-medium">Signup</Link>
-          </nav>
-        </header>  
+        <Header/>
 
         <main className="min-h-[80vh] py-10 max-w-[1400px] w-full mx-auto">
           {children}

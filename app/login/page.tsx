@@ -3,6 +3,8 @@ import { FormEvent, useState } from "react"
 import { useRouter } from "next/navigation"
 import axios from "axios"
 import { toast } from "sonner"
+import { sendMail } from "@/lib/helpers/mailer"
+import Link from "next/link"
 
 
 const LoginPage = () => {
@@ -31,16 +33,17 @@ const LoginPage = () => {
       setLoading(true);
       const {data} = await axios.post("/api/users/login", user)
       if(!data.success) return toast.error("Invalid Credentials");
-      toast.success("Signup success");
-      router.push(`/profile/${data.user._id}`);
+      toast.success("Login success");
+      router.push(`/profile/${data.data._id}`);
 
     }catch(error:any){
-      console.log(error);
+      console.log(error)
       toast.error(error.response.data.error)
     }finally{
       setLoading(false);
     }
   }
+
   return (
     <section>
       <h2 className="text-center text-4xl font-semibold">Login</h2>
@@ -64,6 +67,8 @@ const LoginPage = () => {
         <button type="submit" disabled={loading} className="rounded-full bg-black text-white w-fit px-8 py-2 mx-auto">
           {loading ? "Logging in...": "Login"}
         </button>
+
+        <Link href="/forgotPass" className="text-left align-start underline">Forgot Password?</Link>
       </form>
     </section>
   )
